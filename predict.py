@@ -4,11 +4,11 @@ from transformers import AutoModelForSequenceClassification
 import torch
 
 # load tokenizer
-tokenizer = AutoTokenizer.from_pretrained("bert_model")
+tokenizer = AutoTokenizer.from_pretrained("Nisrinaazhaar/bert-model")
 
 # load model
 model = AutoModelForSequenceClassification.from_pretrained(
-    "bert_model"
+    "Nisrinaazhaar/bert-model"
 )
 
 # label mapping
