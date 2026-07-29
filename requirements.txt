@@ -1,0 +1,7 @@
+streamlit
+pandas
+transformers
+torch
+pdfplumber
+huggingface_hub
+scikit-learn
