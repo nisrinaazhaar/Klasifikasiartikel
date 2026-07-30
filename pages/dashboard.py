@@ -12,7 +12,7 @@ st.title("📊 Dashboard")
 # DATABASE
 # =====================================
 
-    url = "https://jjmxqradekqclhbteplw.supabase.co/rest/v1/"
+    url = "https://jjmxqradekqclhbteplw.supabase.co"
     key = "sb_publishable_InNUNhB1KvsnsGhxJET8cQ_iUHX8uUg"
 
 response = supabase.table("articles").select("*").execute()
