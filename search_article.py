@@ -1,9 +1,10 @@
-import sqlite3
+from supabase import create_client
 import pandas as pd
 
 def search_articles(keyword=""):
 
-    conn = sqlite3.connect("database/articles.db")
+    url = "PROJECT_URL"
+    key = "ANON_KEY"
 
     query = """
     SELECT * FROM articles
