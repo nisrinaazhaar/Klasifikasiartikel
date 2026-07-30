@@ -2,8 +2,8 @@ from supabase import create_client
 
 def save_to_db(title, abstract, label, confidence, pdf_path):
 
-    url = "PROJECT_URL"
-    key = "ANON_KEY"
+    url = "https://jjmxqradekqclhbteplw.supabase.co/rest/v1/"
+    key = "sb_publishable_InNUNhB1KvsnsGhxJET8cQ_iUHX8uUg"
 
     supabase = create_client(url, key)
 
