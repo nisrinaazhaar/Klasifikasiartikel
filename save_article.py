@@ -7,38 +7,38 @@ def save_to_db(title, abstract, label, confidence, pdf_path):
 
     supabase = create_client(url, key)
 
-    # =====================================
-    # CEK DUPLIKAT
-    # =====================================
+    try:
 
-    response = (
-        supabase
-        .table("articles")
-        .select("*")
-        .eq("title", title)
-        .execute()
-    )
-    
-    existing_article = response.data
+        response = (
+            supabase
+            .table("articles")
+            .select("*")
+            .eq("title", title)
+            .execute()
+        )
 
-    # =====================================
-    # JIKA SUDAH ADA
-    # =====================================
+        print("SELECT:", response.data)
 
-    if existing_article:
+        if response.data:
+            return False
 
-        return False
+        result = (
+            supabase
+            .table("articles")
+            .insert({
+                "title": title,
+                "abstract": abstract,
+                "label": label,
+                "confidence": confidence,
+                "pdf_path": pdf_path,
+            })
+            .execute()
+        )
 
-    # =====================================
-    # INSERT DATA
-    # =====================================
+        print("INSERT:", result)
 
-    supabase.table("articles").insert({
-        "title": title,
-        "abstract": abstract,
-        "label": label,
-        "confidence": confidence,
-        "pdf_path": pdf_path,
-    }).execute()
+        return True
 
-    return True
+    except Exception as e:
+        print("ERROR ASLI:", repr(e))
+        raise
