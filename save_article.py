@@ -1,10 +1,11 @@
-import sqlite3
+from supabase import create_client
 
 def save_to_db(title, abstract, label, confidence, pdf_path):
 
-    conn = sqlite3.connect("database/articles.db")
+    url = "PROJECT_URL"
+    key = "ANON_KEY"
 
-    cursor = conn.cursor()
+    supabase = create_client(url, key)
 
     # =====================================
     # CEK DUPLIKAT
@@ -31,14 +32,13 @@ def save_to_db(title, abstract, label, confidence, pdf_path):
     # INSERT DATA
     # =====================================
 
-    cursor.execute("""
-    INSERT INTO articles
-    (title, abstract, label, confidence, pdf_path)
-
-    VALUES (?, ?, ?, ?, ?)
-    """, (title, abstract, label, confidence, pdf_path))
-
-    conn.commit()
+    supabase.table("articles").insert({
+        "title": title,
+        "abstract": abstract,
+        "label": label,
+        "confidence": confidence,
+        "pdf_path": pdf,
+    }).execute()
     conn.close()
 
     return True
