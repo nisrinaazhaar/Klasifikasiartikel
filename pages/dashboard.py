@@ -1,5 +1,5 @@
 import streamlit as st
-import sqlite3
+from supabase import create_client
 import pandas as pd
 
 # =====================================
@@ -12,7 +12,8 @@ st.title("📊 Dashboard")
 # DATABASE
 # =====================================
 
-conn = sqlite3.connect("database/articles.db")
+url = "PROJECT_URL"
+key = "ANON_KEY"
 
 df = pd.read_sql_query(
     "SELECT * FROM articles",
