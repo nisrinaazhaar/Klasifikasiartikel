@@ -11,12 +11,15 @@ def save_to_db(title, abstract, label, confidence, pdf_path):
     # CEK DUPLIKAT
     # =====================================
 
-    cursor.execute("""
-    SELECT * FROM articles
-    WHERE title = ?
-    """, (title,))
-
-    existing_article = cursor.fetchone()
+    response = (
+        supabase
+        .table("articles")
+        .select("*")
+        .eq("title", title)
+        .execute()
+    )
+    
+    existing_article = response.data
 
     # =====================================
     # JIKA SUDAH ADA
