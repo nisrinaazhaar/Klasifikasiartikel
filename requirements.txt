@@ -5,3 +5,4 @@ torch
 pdfplumber
 huggingface_hub
 scikit-learn
+supabase-py
