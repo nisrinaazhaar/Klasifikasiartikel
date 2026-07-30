@@ -12,15 +12,19 @@ st.title("📊 Dashboard")
 # DATABASE
 # =====================================
 
-    url = "https://jjmxqradekqclhbteplw.supabase.co"
-    key = "sb_publishable_InNUNhB1KvsnsGhxJET8cQ_iUHX8uUg"
+url = "https://jjmxqradekqclhbteplw.supabase.co"
+key = "sb_publishable_InNUNhB1KvsnsGhxJET8cQ_iUHX8uUg"
+supabase = create_client(url, key)
 
 response = supabase.table("articles").select("*").execute()
 
 df = pd.DataFrame(response.data)
 
-conn.close()
+if df.empty:
 
+    st.metric("Total Articles", 0)
+    st.info("No articles have been classified yet.")
+    st.stop()
 # =====================================
 # TOTAL ARTIKEL
 # =====================================
