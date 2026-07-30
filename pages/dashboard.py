@@ -15,10 +15,9 @@ st.title("📊 Dashboard")
 url = "PROJECT_URL"
 key = "ANON_KEY"
 
-df = pd.read_sql_query(
-    "SELECT * FROM articles",
-    conn
-)
+response = supabase.table("articles").select("*").execute()
+
+df = pd.DataFrame(response.data)
 
 conn.close()
 
