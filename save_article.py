@@ -27,8 +27,6 @@ def save_to_db(title, abstract, label, confidence, pdf_path):
 
     if existing_article:
 
-        conn.close()
-
         return False
 
     # =====================================
@@ -40,8 +38,7 @@ def save_to_db(title, abstract, label, confidence, pdf_path):
         "abstract": abstract,
         "label": label,
         "confidence": confidence,
-        "pdf_path": pdf,
+        "pdf_path": pdf_path,
     }).execute()
-    conn.close()
 
     return True
